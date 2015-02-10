@@ -237,10 +237,16 @@ function InputsUpdate() {
             case 13:
                 if (string.localeCompare("ATCKUP") == 0 || string.localeCompare("ATACKUP") == 0) {
                     playerStats.atckUp();
+                    //condition to increase enemy stat depending on player stat
+                    //enemyStats.atckUp();
                 } else if (string.localeCompare("DEFUP") == 0 || string.localeCompare("DEFENSEUP") == 0) {
                     playerStats.defUp();
+                    //condition to increase enemy stat depending on player stat
+                    //enemyStats.defUp();
                 } else if (string.localeCompare("MASKUP") == 0) {
                     playerStats.maskUp();
+                    //condition to increase enemy stat depending on player stat
+                    //enemyStats.secUp();
                 }
                 status.text = string;
                 string = "";
