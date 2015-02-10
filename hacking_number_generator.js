@@ -1,7 +1,10 @@
 use2D = true;
 initGame("canvas");
 
+var INC_RATIO = 1.5;
+var MIN_INC = 20;
 var DEDUCT_VAR = 0.1;
+var MIN_STATS = 5;
 
 var clickables = new Array();
 var status = new TextBox("Status: ");
@@ -90,19 +93,27 @@ playerStats = {
         boxMsk.y = 130;
         world.addChild(boxMsk);
 	},
+    statUp: function(theStat) {
+    	//input must be a string: the name of the variable
+    	if ( ( this[theStat] * (INC_RATIO - 1) ) >= MIN_INC){
+    		this[theStat] *= INC_RATIO;
+    	} else {
+    		this[theStat] += MIN_INC;
+    	}
+    }
     atckUp: function() {
         // generate number here and update boxAtck
-        this.atck *= 1.5;
+        statUp('atck');
         boxAtck.text = this.atck;
     },
     defUp: function() {
         // generate number here and update boxAtck
-        this.def *= 1.5;
+        statUp('def');
         boxDef.text = this.def;
     },
     maskUp: function() {
         // generate number here and update boxAtck
-        this.mask *= 1.5;
+        statUp('mask');
         boxMsk.text = this.mask;
     },
     enemyLwrAtck: function() {
@@ -155,19 +166,27 @@ enemyStats = {
         box2Sec.y = 130;
         world.addChild(box2Sec);
 	},
+    statUp: function(theStat) {
+    	//input must be a string: the name of the variable
+    	if ( ( this[theStat] * (INC_RATIO - 1) ) >= MIN_INC){
+    		this[theStat] *= INC_RATIO;
+    	} else {
+    		this[theStat] += MIN_INC;
+    	}
+    }
     atckUp: function() {
         // generate number here and update boxAtck
-        this.atck *= 1.5;
-        box2Atck.text = this.atck;
+        statUp('atck');
+        boxAtck.text = this.atck;
     },
     defUp: function() {
         // generate number here and update boxAtck
-        this.def *= 1.5;
-        box2Def.text = this.def;
+        statUp('def');
+        boxDef.text = this.def;
     },
     secUp: function() {
         // generate number here and update boxAtck
-        this.sec *= 1.5;
+        statUp('sec');
         box2Sec.text = this.sec;
     },
     enemyLwrAtck: function() {
