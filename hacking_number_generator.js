@@ -106,17 +106,17 @@ playerStats = {
     },
     atckUp: function() {
         // generate number here and update boxAtck
-        statUp('atck');
+        this.statUp('atck');
         boxAtck.text = this.atck;
     },
     defUp: function() {
         // generate number here and update boxAtck
-        statUp('def');
+        this.statUp('def');
         boxDef.text = this.def;
     },
     maskUp: function() {
         // generate number here and update boxAtck
-        statUp('mask');
+        this.statUp('mask');
         boxMsk.text = this.mask;
     },
     enemyLwrAtck: function() {
@@ -179,17 +179,17 @@ enemyStats = {
     },
     atckUp: function() {
         // generate number here and update boxAtck
-        statUp('atck');
+        this.statUp('atck');
         boxAtck.text = this.atck;
     },
     defUp: function() {
         // generate number here and update boxAtck
-        statUp('def');
+        this.statUp('def');
         boxDef.text = this.def;
     },
     secUp: function() {
         // generate number here and update boxAtck
-        statUp('sec');
+        this.statUp('sec');
         box2Sec.text = this.sec;
     },
     enemyLwrAtck: function() {
