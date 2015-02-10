@@ -44,7 +44,7 @@ var genEnemy = function(difficulty) {
   var genArr = [];
   for (var i = 0; i < 4; i++) { genArr.push(Math.floor(difficulty + (Math.random() * difficulty) ) ) }
   return new crackStats(genArr[0], genArr[1], genArr[2], genArr[3]);
-}
+};
 
 // loads saved game from loadStats or starts new game if loadStats is empty
 var startGame(loadStats) {
@@ -54,4 +54,4 @@ var startGame(loadStats) {
     window.alert('Error: Incompatible object. Cannot load game.');
     return;
   } currentStats = loadStats;
-}
+};
