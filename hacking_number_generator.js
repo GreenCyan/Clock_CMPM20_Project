@@ -42,8 +42,8 @@ LoadContent = function() {
 Hack = {
     boxType: null,
     init: function() {
-        playerStats.init(50, 100, 100);
-        enemyStats.init(50, 100, 100);
+        playerStats.init(currentStats.hackCrack);
+        enemyStats.init(genEnemy(50));
         this.boxType = new TextBox("YOOO");
         this.boxType.fontSize = 50;
         this.boxType.x = 0;
@@ -63,8 +63,8 @@ playerStats = {
 	atck: 5,
 	def: 10,
 	mask: 10,
-	init: function(atck, def, mask) {
-		this.atck = atck;
+	init: function(stats) {
+		this.atck = stats.attack;
         boxAtck = new TextBox(),
         boxAtck.text = this.atck;
         boxAtck.fontSize = 50;
@@ -72,7 +72,7 @@ playerStats = {
         boxAtck.y = 10;
         world.addChild(boxAtck);
         
-		this.def = def;
+		this.def = stats.defense;
         boxDef = new TextBox(),
         boxDef.text = this.def;
         boxDef.fontSize = 50;
@@ -80,7 +80,7 @@ playerStats = {
         boxDef.y = 70;
         world.addChild(boxDef);
         
-		this.mask = mask;
+		this.mask = stats.mask;
         boxMsk = new TextBox(),
         boxMsk.text = this.mask;
         boxMsk.fontSize = 50;
@@ -128,8 +128,8 @@ enemyStats = {
 	atck: 5,
 	def: 10,
 	sec: 10,
-	init: function(atck, def, sec) {
-		this.atck = atck;
+	init: function(stats) {
+		this.atck = stats.attack;
         box2Atck = new TextBox(),
         box2Atck.text = this.atck;
         box2Atck.fontSize = 50;
@@ -137,7 +137,7 @@ enemyStats = {
         box2Atck.y = 10;
         world.addChild(box2Atck);
         
-		this.def = def;
+		this.def = stats.defense;
         box2Def = new TextBox(),
         box2Def.text = this.def;
         box2Def.fontSize = 50;
@@ -145,7 +145,7 @@ enemyStats = {
         box2Def.y = 70;
         world.addChild(box2Def);
         
-		this.sec = sec;
+		this.sec = stats.mask;
         box2Sec = new TextBox(),
         box2Sec.text = this.sec;
         box2Sec.fontSize = 50;
