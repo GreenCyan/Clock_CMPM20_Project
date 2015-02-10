@@ -29,7 +29,7 @@ LoadContent = function() {
 	status.padRight = 10;
 	status.alpha = 0.7;
 	world.addChild(status);
-    
+	
 	hackBox.width = 100;
 	hackBox.height = 50;
 	hackBox.x = 20;
@@ -37,10 +37,10 @@ LoadContent = function() {
 	hackBox.image = Textures.load("http://www.largeyellowbutton.com/largeyellowbutton.jpg");
 	clickables.push(hackBox);
 	world.addChild(hackBox);
-    
+	
 	world.addChild(input);
 	gInput.addMouseDownListener(input);
-    gInput.addKeyboardListener(input);
+	gInput.addKeyboardListener(input);
 };
 /*************************************************************/
 /* this function starts and updates typing */
@@ -100,7 +100,7 @@ playerStats = {
     	} else {
     		this[theStat] += MIN_INC;
     	}
-    }
+    },
     atckUp: function() {
         // generate number here and update boxAtck
         statUp('atck');
@@ -173,7 +173,7 @@ enemyStats = {
     	} else {
     		this[theStat] += MIN_INC;
     	}
-    }
+    },
     atckUp: function() {
         // generate number here and update boxAtck
         statUp('atck');
@@ -235,9 +235,9 @@ function InputsUpdate() {
         var char = String.fromCharCode(key);
         switch (key) {
             case 13:
-                if (string.localeCompare("ATCKUP") == 0) {
+                if (string.localeCompare("ATCKUP") == 0 || string.localeCompare("ATACKUP") == 0) {
                     playerStats.atckUp();
-                } else if (string.localeCompare("DEFUP") == 0) {
+                } else if (string.localeCompare("DEFUP") == 0 || string.localeCompare("DEFENSEUP") == 0) {
                     playerStats.defUp();
                 } else if (string.localeCompare("MASKUP") == 0) {
                     playerStats.maskUp();
