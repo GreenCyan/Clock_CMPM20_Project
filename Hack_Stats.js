@@ -47,7 +47,7 @@ var genEnemy = function(difficulty) {
 };
 
 // loads saved game from loadStats or starts new game if loadStats is empty
-var startGame(loadStats) {
+function startGame(loadStats) {
   if (loadStats == null) {
     currentStats = new gameHackStats();
   } else if (!(typeof loadStats == 'gameHackStats')) {
