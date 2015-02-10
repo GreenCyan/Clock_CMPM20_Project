@@ -1,6 +1,8 @@
 use2D = true;
 initGame("canvas");
 
+var DEDUCT_VAR = 0.1;
+
 var clickables = new Array();
 var status = new TextBox("Status: ");
 var hackBox = new Sprite();
@@ -113,13 +115,13 @@ playerStats = {
         //enemyStats.selfLwrMsk(this.mask);
     },
     selfLwrAtck: function(deduct) {
-        this.atck -= deduct;
+        this.atck -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
     },
     selfLwrDef: function(deduct) {
-        this.def -= deduct;
+        this.def -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
     },
     selfLwrMsk: function(deduct) {
-        //this.mask -= deduct;
+        //this.mask -= deduct * Math.floor(Math.random() * deduct * DEDUCT_VAR);
     }
 };
 /*************************************************************/
@@ -178,13 +180,13 @@ enemyStats = {
         //enemyStats.selfLwrMsk(this.mask);
     },
     selfLwrAtck: function(deduct) {
-        this.atck -= deduct;
+        this.atck -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR );
     },
     selfLwrDef: function(deduct) {
-        this.def -= deduct;
+        this.def -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
     },
     selfLwrSec: function(deduct) {
-        //this.mask -= deduct;
+        //this.mask -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR );
     }
 };
 function Collision(obj, mouseX, mouseY) {
