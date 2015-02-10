@@ -143,28 +143,28 @@ enemyStats = {
 	sec: 10,
 	init: function(stats) {
 		this.atck = stats.attack;
-        box2Atck = new TextBox(),
-        box2Atck.text = this.atck;
-        box2Atck.fontSize = 50;
-        box2Atck.x = 350;
-        box2Atck.y = 10;
-        world.addChild(box2Atck);
-        
+	        box2Atck = new TextBox(),
+	        box2Atck.text = this.atck;
+	        box2Atck.fontSize = 50;
+	        box2Atck.x = 350;
+	        box2Atck.y = 10;
+	        world.addChild(box2Atck);
+	        
 		this.def = stats.defense;
-        box2Def = new TextBox(),
-        box2Def.text = this.def;
-        box2Def.fontSize = 50;
-        box2Def.x = 350;
-        box2Def.y = 70;
-        world.addChild(box2Def);
+	        box2Def = new TextBox(),
+	        box2Def.text = this.def;
+	        box2Def.fontSize = 50;
+	        box2Def.x = 350;
+	        box2Def.y = 70;
+	        world.addChild(box2Def);
         
 		this.sec = stats.mask;
-        box2Sec = new TextBox(),
-        box2Sec.text = this.sec;
-        box2Sec.fontSize = 50;
-        box2Sec.x = 350;
-        box2Sec.y = 130;
-        world.addChild(box2Sec);
+	        box2Sec = new TextBox(),
+	        box2Sec.text = this.sec;
+	        box2Sec.fontSize = 50;
+	        box2Sec.x = 350;
+	        box2Sec.y = 130;
+	        world.addChild(box2Sec);
 	},
     statUp: function(theStat) {
     	//input must be a string: the name of the variable
@@ -235,18 +235,29 @@ function InputsUpdate() {
         var char = String.fromCharCode(key);
         switch (key) {
             case 13:
-                if (string.localeCompare("ATCKUP") == 0 || string.localeCompare("ATACKUP") == 0) {
+                if (string.localeCompare("ATCKUP") == 0 || string.localeCompare("ATTACKUP") == 0) {
                     playerStats.atckUp();
                     //condition to increase enemy stat depending on player stat
-                    //enemyStats.atckUp();
+                } else if (string.localeCompare("ATCK") == 0 || string.localeCompare("ATTACK") == 0) {
+                    playerStats.enemyLwrDef();
+                    //condition to increase enemy stat depending on player stat
+                }  else if (string.localeCompare("ATCKDOWN") == 0 || string.localeCompare("ATTACKDOWN") == 0 || 
+                	string.localeCompare("ATCKDWN") == 0 || string.localeCompare("ATTACKDWN") == 0 || 
+                	string.localeCompare("ATCKDN") == 0 || string.localeCompare("ATTACKDN") == 0) {
+                    playerStats.enemyLwrAtck();
+                    //condition to increase enemy stat depending on player stat
                 } else if (string.localeCompare("DEFUP") == 0 || string.localeCompare("DEFENSEUP") == 0) {
                     playerStats.defUp();
                     //condition to increase enemy stat depending on player stat
-                    //enemyStats.defUp();
-                } else if (string.localeCompare("MASKUP") == 0) {
+                } else if (string.localeCompare("MASKUP") == 0 || string.localeCompare("MSKUP") == 0 || 
+        		string.localeCompare("MSK") == 0 || string.localeCompare("MASK") == 0) {
                     playerStats.maskUp();
                     //condition to increase enemy stat depending on player stat
-                    //enemyStats.secUp();
+                } else if (string.localeCompare("SECDOWN") == 0 || string.localeCompare("SCDOWN") == 0 || 
+        		string.localeCompare("SECDWN") == 0 || string.localeCompare("SCDWN") == 0 || 
+        		string.localeCompare("SECDN") == 0 || string.localeCompare("SCDN") == 0) {
+                    playerStats.maskUp();
+                    //condition to increase enemy stat depending on player stat
                 }
                 status.text = string;
                 string = "";
