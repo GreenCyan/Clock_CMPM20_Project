@@ -1,6 +1,9 @@
 use2D = true;
 initGame("canvas");
 
+//this line is for test only, comment it out later
+currentStats = new gameHackStats();
+
 var INC_RATIO = 1.5;
 var MIN_INC = 20;
 var DEDUCT_VAR = 0.1;
