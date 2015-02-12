@@ -235,7 +235,7 @@ enemyStats = {
     },
     selfLwrSec: function(deduct) {
         this.statDown('sec', deduct);
-        box2Def.text = this.sec;
+        box2Sec.text = this.sec;
     }
 };
 function Collision(obj, mouseX, mouseY) {
