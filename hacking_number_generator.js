@@ -126,9 +126,16 @@ playerStats = {
         enemyStats.selfLwrDef(this.atck);
     },
     enemyLwrSec: function() {
-        //enemyStats.selfLwrMsk(this.mask);
+        enemyStats.selfLwrMsk(this.mask);
     },
 	statDown: function(theStat, deduct) {
+    	//input must be a string: the name of the variable
+	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+	if (this[theStat] < MIN_STATS) {
+		this[theStat] = MIN_STATS;
+	}
+    },
+    statDown: function(theStat, deduct) {
     	//input must be a string: the name of the variable
     	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
     	if (this[theStat] < MIN_STATS) {
@@ -144,7 +151,8 @@ playerStats = {
         boxDef.text = this.def;
     },
     selfLwrMsk: function(deduct) {
-        //this.mask -= deduct * Math.floor(Math.random() * deduct * DEDUCT_VAR);
+        this.statDown('mask', deduct);
+        boxDef.text = this.mask;
     }
 };
 /*************************************************************/
@@ -208,7 +216,7 @@ enemyStats = {
         playerStats.selfLwrDef(this.atck);
     },
     enemyLwrMsk: function() {
-        //enemyStats.selfLwrMsk(this.mask);
+        //enemyStats.selfLwrMsk(this.sec);
     },
     statDown: function(theStat, deduct) {
     	//input must be a string: the name of the variable
@@ -226,7 +234,8 @@ enemyStats = {
         box2Def.text = this.def;
     },
     selfLwrSec: function(deduct) {
-        //this.mask -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR );
+        this.statDown('sec', deduct);
+        box2Def.text = this.sec;
     }
 };
 function Collision(obj, mouseX, mouseY) {
