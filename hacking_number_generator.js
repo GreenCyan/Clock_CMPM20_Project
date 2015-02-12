@@ -128,12 +128,19 @@ playerStats = {
     enemyLwrSec: function() {
         //enemyStats.selfLwrMsk(this.mask);
     },
+	statDown: function(theStat, deduct) {
+    	//input must be a string: the name of the variable
+    	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+    	if (this[theStat] < MIN_STATS) {
+    		this[theStat] = MIN_STATS;
+    	}
+    },
     selfLwrAtck: function(deduct) {
-        this.atck -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+        this.statDown('atck', deduct);
         boxAtck.text = this.atck;
     },
     selfLwrDef: function(deduct) {
-        this.def -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+        this.statDown('def', deduct);
         boxDef.text = this.def;
     },
     selfLwrMsk: function(deduct) {
@@ -203,12 +210,19 @@ enemyStats = {
     enemyLwrMsk: function() {
         //enemyStats.selfLwrMsk(this.mask);
     },
+    statDown: function(theStat, deduct) {
+    	//input must be a string: the name of the variable
+    	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+    	if (this[theStat] < MIN_STATS) {
+    		this[theStat] = MIN_STATS;
+    	}
+    },
     selfLwrAtck: function(deduct) {
-        this.atck -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR );
+        this.statDown('atck', deduct);
         box2Atck.text = this.atck;
     },
     selfLwrDef: function(deduct) {
-        this.def -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+        this.statDown('def', deduct);
         box2Def.text = this.def;
     },
     selfLwrSec: function(deduct) {
