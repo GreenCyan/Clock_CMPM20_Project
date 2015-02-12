@@ -37,6 +37,12 @@ var gameHackStats = function() {
 // current game stats
 var currentStats = null;
 
+// saved game stats
+var saveStats = [];
+for (var i = 0; i < 10; i++) {
+	saveStats.push([]);
+}
+
 // Stat functions
 
 // generate enemy stats
@@ -50,8 +56,17 @@ var genEnemy = function(difficulty) {
 function startGame(loadStats) {
   if (loadStats == null) {
     currentStats = new gameHackStats();
+	return;
   } else if (!(typeof loadStats == 'gameHackStats')) {
     window.alert('Error: Incompatible object. Cannot load game.');
     return;
   } currentStats = loadStats;
+};
+
+// adds save game data to saveStats
+function saveGame() {
+};
+
+// deletes save data from saveStats and pushes down save data indexed above the deleted data
+function deleteSave() {
 };
