@@ -277,7 +277,7 @@ function InputsUpdate() {
                 } else if (string.localeCompare("SECDOWN") == 0 || string.localeCompare("SCDOWN") == 0 || 
         		string.localeCompare("SECDWN") == 0 || string.localeCompare("SCDWN") == 0 || 
         		string.localeCompare("SECDN") == 0 || string.localeCompare("SCDN") == 0) {
-                    playerStats.maskUp();
+                    playerStats.enemyLwrSec();
                     //condition to increase enemy stat depending on player stat
                 }
                 status.text = string;
