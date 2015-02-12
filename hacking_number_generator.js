@@ -99,7 +99,7 @@ playerStats = {
     statUp: function(theStat) {
     	//input must be a string: the name of the variable
     	if ( ( this[theStat] * (INC_RATIO - 1) ) >= MIN_INC){
-    		this[theStat] *= INC_RATIO;
+    		this[theStat] = Math.floor(this[theStat] * INC_RATIO);
     	} else {
     		this[theStat] += MIN_INC;
     	}
@@ -130,9 +130,11 @@ playerStats = {
     },
     selfLwrAtck: function(deduct) {
         this.atck -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+        boxAtck.text = this.atck;
     },
     selfLwrDef: function(deduct) {
         this.def -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+        boxDef.text = this.def;
     },
     selfLwrMsk: function(deduct) {
         //this.mask -= deduct * Math.floor(Math.random() * deduct * DEDUCT_VAR);
@@ -172,7 +174,7 @@ enemyStats = {
     statUp: function(theStat) {
     	//input must be a string: the name of the variable
     	if ( ( this[theStat] * (INC_RATIO - 1) ) >= MIN_INC){
-    		this[theStat] *= INC_RATIO;
+    		this[theStat] = Math.floor(this[theStat] * INC_RATIO);
     	} else {
     		this[theStat] += MIN_INC;
     	}
@@ -180,12 +182,12 @@ enemyStats = {
     atckUp: function() {
         // generate number here and update boxAtck
         this.statUp('atck');
-        boxAtck.text = this.atck;
+        box2Atck.text = this.atck;
     },
     defUp: function() {
         // generate number here and update boxAtck
         this.statUp('def');
-        boxDef.text = this.def;
+        box2Def.text = this.def;
     },
     secUp: function() {
         // generate number here and update boxAtck
@@ -203,9 +205,11 @@ enemyStats = {
     },
     selfLwrAtck: function(deduct) {
         this.atck -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR );
+        box2Atck.text = this.atck;
     },
     selfLwrDef: function(deduct) {
         this.def -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+        box2Def.text = this.def;
     },
     selfLwrSec: function(deduct) {
         //this.mask -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR );
