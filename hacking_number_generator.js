@@ -126,7 +126,7 @@ playerStats = {
         enemyStats.selfLwrDef(this.atck);
     },
     enemyLwrSec: function() {
-        enemyStats.selfLwrMsk(this.mask);
+        enemyStats.selfLwrSec(this.mask);
     },
 	statDown: function(theStat, deduct) {
     	//input must be a string: the name of the variable
