@@ -128,13 +128,6 @@ playerStats = {
     enemyLwrSec: function() {
         enemyStats.selfLwrSec(this.mask);
     },
-	statDown: function(theStat, deduct) {
-    	//input must be a string: the name of the variable
-	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
-	if (this[theStat] < MIN_STATS) {
-		this[theStat] = MIN_STATS;
-	}
-    },
     statDown: function(theStat, deduct) {
     	//input must be a string: the name of the variable
     	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
@@ -257,7 +250,7 @@ function InputsUpdate() {
 			click = clickables[click];
 			if (Collision(click, gInput.mouse.x, gInput.mouse.y)) {
 				status.text = "Click: Yes";
-                Hack.init();
+                		Hack.init();
 			}
 		}
 	};
