@@ -75,7 +75,7 @@ playerStats = {
         boxDef.y = 70;
         world.addChild(boxDef);
         
-		this.mask = stats.mask;
+	this.mask = stats.mask;
         boxMsk = new TextBox(),
         boxMsk.text = this.mask;
         boxMsk.fontSize = 50;
@@ -90,7 +90,7 @@ playerStats = {
 		boxDef.color = "#666633";
 		boxMsk.color = "#666633";
 	},
-    statUp: function(theStat) {
+    statUp: function(theStat, box) {
     	//input must be a string: the name of the variable
     	if ( ( this[theStat] * (INC_RATIO - 1) ) >= MIN_INC){
     		this[theStat] = Math.floor(this[theStat] * INC_RATIO);
@@ -225,7 +225,7 @@ enemyStats = {
     enemyLwrMsk: function() {
         //enemyStats.selfLwrMsk(this.sec);
     },
-    statDown: function(theStat, deduct) {
+    statDown: function(theStat, deduct, box) {
     	//input must be a string: the name of the variable
     	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
 	if (this[theStat] < MIN_STATS) {
