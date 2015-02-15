@@ -258,6 +258,9 @@ enemyStats = {
 		box2Sec.remove();
 	}
 };
+
+var enemyActions = [enemyStats[enemyLwrAtck], enemyStats[enemyLwrDef], enemyStats[enemyLwrMsk]];
+
 function Collision(obj, mouseX, mouseY) {
 	var left = obj.x;
 	var right = obj.x + obj.width;
@@ -325,6 +328,7 @@ function InputsUpdate() {
 				enemyStats.colorClear();
 				//condition to increase enemy stat depending on player stat
 	                }
+					enemyActions[Math.floor(Math.random() * enemyActions.length)]();
 	                string = "";
 	                break;
 	            default:
