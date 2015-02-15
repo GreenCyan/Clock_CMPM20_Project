@@ -259,7 +259,14 @@ enemyStats = {
 	}
 };
 
-var enemyActions = [enemyStats[enemyLwrAtck], enemyStats[enemyLwrDef], enemyStats[enemyLwrMsk]];
+var enemyActions = [
+	enemyStats['atckUp'],
+	enemyStats['defUp'],
+	enemyStats['secUp'],
+	enemyStats['enemyLwrAtck'],
+	enemyStats['enemyLwrDef'],
+	enemyStats['enemyLwrMsk']
+];
 
 function Collision(obj, mouseX, mouseY) {
 	var left = obj.x;
