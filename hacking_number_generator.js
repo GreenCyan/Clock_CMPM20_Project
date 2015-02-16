@@ -35,7 +35,8 @@ LoadContent = function() {
 Hack = {
     boxType: null,
     init: function() {
-        playerStats.init(currentStats.hackCrack);
+        //playerStats.init(currentStats.hackCrack);
+        playerStats.init(genEnemy(80));
         enemyStats.init(genEnemy(50));
         this.boxType = new TextBox("YOOO");
         this.boxType.fontSize = 50;
@@ -335,7 +336,7 @@ function InputsUpdate() {
 				enemyStats.colorClear();
 				//condition to increase enemy stat depending on player stat
 	                }
-					enemyActions[Math.floor(Math.random() * enemyActions.length)].call(enemyStats);
+			enemyActions[Math.floor(Math.random() * enemyActions.length)].call(enemyStats);
 	                string = "";
 	                break;
 	            default:
