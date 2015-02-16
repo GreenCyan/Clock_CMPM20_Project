@@ -335,7 +335,7 @@ function InputsUpdate() {
 				enemyStats.colorClear();
 				//condition to increase enemy stat depending on player stat
 	                }
-					enemyActions[Math.floor(Math.random() * enemyActions.length)]();
+					enemyActions[Math.floor(Math.random() * enemyActions.length)].call(enemyStats);
 	                string = "";
 	                break;
 	            default:
