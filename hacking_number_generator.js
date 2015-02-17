@@ -241,6 +241,22 @@ enemyStats = {
 		}
 	}
     },
+	// this function has the enemyAI make intelligent decisions
+	intelligence: function() {
+		if (this.atck > playerStats.def) {
+			this.enemyLwrDef();
+		} else if (this.atck < playerStats.atck) {
+			this.enemyLwrAtck();
+		} else if (this.sec < playerStats.mask) {
+			this.enemyLwrMsk();
+		} else if (this.def < playerStats.atck) {
+			this.defUp();
+		} else if (this.def > playerStats.def) {
+			this.atckUp();
+		} else {
+			this.secUp();
+		}
+	}
     selfLwrAtck: function(deduct) {
         this.statDown('atck', deduct, box2Atck);
         box2Atck.text = this.atck;
@@ -268,6 +284,10 @@ var enemyActions = [
 	enemyStats['enemyLwrDef'],
 	enemyStats['enemyLwrMsk']
 ];
+
+for (var i = 0; i < 5; i++) {
+	enemyActions.push(enemyStats['intelligence'])
+}
 
 function Collision(obj, mouseX, mouseY) {
 	var left = obj.x;
