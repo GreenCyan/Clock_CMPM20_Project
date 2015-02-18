@@ -256,7 +256,7 @@ enemyStats = {
 		} else {
 			this.secUp();
 		}
-	}
+	},
     selfLwrAtck: function(deduct) {
         this.statDown('atck', deduct, box2Atck);
         box2Atck.text = this.atck;
