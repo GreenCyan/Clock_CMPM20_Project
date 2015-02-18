@@ -4,7 +4,7 @@ initGame("canvas");
 //this line is for test only, comment it out later
 currentStats = new gameHackStats();
 
-var INC_RATIO = 1.5;
+var INC_RATIO = 0.3;
 var MIN_INC = 20;
 var DEDUCT_VAR = 0.1;
 var MIN_STATS = 5;
@@ -50,7 +50,7 @@ Hack = {
     end: function() {
         playerStats.end();
         enemyStats.end();
-	hackBool = false;
+		hackBool = false;
     }
 };
 /*************************************************************/
@@ -76,7 +76,7 @@ playerStats = {
         boxDef.y = 70;
         world.addChild(boxDef);
         
-	this.mask = stats.mask;
+		this.mask = stats.mask;
         boxMsk = new TextBox(),
         boxMsk.text = this.mask;
         boxMsk.fontSize = 50;
@@ -84,7 +84,7 @@ playerStats = {
         boxMsk.y = 130;
         world.addChild(boxMsk);
         
-	playerStats.colorClear();
+		playerStats.colorClear();
 	},
 	colorClear: function() {
 		boxAtck.color = "#666633";
@@ -99,12 +99,12 @@ playerStats = {
     		this[theStat] += MIN_INC;
     	}
     	if (box) {
-		if (box.color == "#009900") {
-			box.color = "#CC9900";
-		} else {
-			box.color = "#009900";
+			if (box.color == "#009900") {
+				box.color = "#CC9900";
+			} else {
+				box.color = "#009900";
+			}
 		}
-	}
 	},
     atckUp: function() {
         // generate number here and update boxAtck
@@ -122,32 +122,42 @@ playerStats = {
         boxMsk.text = this.mask;
     },
     enemyLwrAtck: function() {
-        enemyStats.selfLwrAtck(this.atck);
+        enemyStats.selfLwrAtck(20);
     },
     enemyLwrDef: function() {
         enemyStats.selfLwrDef(this.atck);
     },
     enemyLwrSec: function() {
-        enemyStats.selfLwrSec(this.mask);
+        enemyStats.selfLwrSec(20);
     },
-    statDown: function(theStat, deduct) {
+    statDown: function(theStat, deduct, box) {
     	//input must be a string: the name of the variable
     	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
     	if (this[theStat] < MIN_STATS) {
-    		//this[theStat] = MIN_STATS;
-		Hack.end();
+			if (theStat == 'def') {			//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				Hack.end();
+			} else {
+				this[theStat] = MIN_STATS;
+			}
     	}
+		if (box) {							//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			if (box.color == "#993333") {
+				box.color = "#CC9900";
+			} else {
+				box.color = "#993333";
+			}
+		}
     },
     selfLwrAtck: function(deduct) {
-        this.statDown('atck', deduct);
+        this.statDown('atck', deduct, boxAtck);		//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         boxAtck.text = this.atck;
     },
     selfLwrDef: function(deduct) {
-        this.statDown('def', deduct);
+        this.statDown('def', deduct, boxDef);		//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         boxDef.text = this.def;
     },
     selfLwrMsk: function(deduct) {
-        this.statDown('mask', deduct);
+        this.statDown('mask', deduct, boxMsk);		//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         boxDef.text = this.mask;
     },
 	end: function() {
@@ -194,52 +204,62 @@ enemyStats = {
 		box2Def.color = "#666633";
 		box2Sec.color = "#666633";
 	},
-    statUp: function(theStat) {
+    statUp: function(theStat, box) {
     	//input must be a string: the name of the variable
-    	if ( ( this[theStat] * (INC_RATIO - 1) ) >= MIN_INC){
+    	if ((this[theStat] * (INC_RATIO - 1)) >= MIN_INC) {
     		this[theStat] = Math.floor(this[theStat] * INC_RATIO);
     	} else {
     		this[theStat] += MIN_INC;
     	}
+		if (box) {
+			if (box.color == "#009900") {
+				box.color = "#CC9900";
+			} else {
+				box.color = "#009900";
+			}
+		}
     },
     atckUp: function() {
         // generate number here and update boxAtck
-        this.statUp('atck');
+        this.statUp('atck', box2Atck);
         box2Atck.text = this.atck;
     },
     defUp: function() {
         // generate number here and update boxAtck
-        this.statUp('def');
+        this.statUp('def', box2Def);
         box2Def.text = this.def;
     },
     secUp: function() {
         // generate number here and update boxAtck
-        this.statUp('sec');
+        this.statUp('sec', box2Sec);
         box2Sec.text = this.sec;
     },
     enemyLwrAtck: function() {
-        playerStats.selfLwrAtck(this.atck);
+        playerStats.selfLwrAtck(20);
     },
     enemyLwrDef: function() {
         playerStats.selfLwrDef(this.atck);
     },
     enemyLwrMsk: function() {
-        //enemyStats.selfLwrMsk(this.sec);
+        playerStats.selfLwrMsk(20);
     },
     statDown: function(theStat, deduct, box) {
     	//input must be a string: the name of the variable
     	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
-	if (this[theStat] < MIN_STATS) {
-    		//this[theStat] = MIN_STATS;
-		Hack.end();
+		if (this[theStat] < MIN_STATS) {
+			if (theStat == 'def') {			//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+				Hack.end();
+			} else {
+				this[theStat] = MIN_STATS;
+			}
     	}
-	if (box) {
-		if (box.color == "#009900") {
-			box.color = "#CC9900";
-		} else {
-			box.color = "#FF3300";
+		if (box) {							//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+			if (box.color == "#993333") {
+				box.color = "#CC9900";
+			} else {
+				box.color = "#993333";
+			}
 		}
-	}
     },
 	// this function has the enemyAI make intelligent decisions
 	intelligence: function() {
@@ -306,72 +326,72 @@ function InputsUpdate() {
 		for (var click in clickables) {
 			click = clickables[click];
 			if (Collision(click, gInput.mouse.x, gInput.mouse.y)) {
-                		Hack.init();
+				Hack.init();
 				hackBool = true;
 			}
 		}
 	};
-    input.onKeyDown = function(key) {
-        var char = String.fromCharCode(key);
-        if (hackBool == true) {
-	        switch (key) {
-	            case 13:
-	                if (string.localeCompare("ATCKUP") == 0 || string.localeCompare("ATTACKUP") == 0) {
-				playerStats.colorClear();
-				enemyStats.colorClear();
-	                    playerStats.atckUp();
-	                    //condition to increase enemy stat depending on player stat
-	                } else if (string.localeCompare("ATCK") == 0 || string.localeCompare("ATTACK") == 0) {
-				playerStats.colorClear();
-				enemyStats.colorClear();
-	                    playerStats.enemyLwrDef();
-	                    //condition to increase enemy stat depending on player stat
-	                }  else if (string.localeCompare("ATCKDOWN") == 0 || string.localeCompare("ATTACKDOWN") == 0 || 
-	                	string.localeCompare("ATCKDWN") == 0 || string.localeCompare("ATTACKDWN") == 0 || 
-	                	string.localeCompare("ATCKDN") == 0 || string.localeCompare("ATTACKDN") == 0) {
-				playerStats.colorClear();
-				enemyStats.colorClear();
-	                    playerStats.enemyLwrAtck();
-	                    //condition to increase enemy stat depending on player stat
-	                } else if (string.localeCompare("DEFUP") == 0 || string.localeCompare("DEFENSEUP") == 0) {
-				playerStats.colorClear();
-				enemyStats.colorClear();
-	                    playerStats.defUp();
-	                    //condition to increase enemy stat depending on player stat
-	                } else if (string.localeCompare("MASKUP") == 0 || string.localeCompare("MSKUP") == 0 || 
-	        		string.localeCompare("MSK") == 0 || string.localeCompare("MASK") == 0) {
-				playerStats.colorClear();
-				enemyStats.colorClear();
-	                    playerStats.maskUp();
-	                    //condition to increase enemy stat depending on player stat
-	                } else if (string.localeCompare("SECDOWN") == 0 || string.localeCompare("SCDOWN") == 0 || 
-	        		string.localeCompare("SECDWN") == 0 || string.localeCompare("SCDWN") == 0 || 
-	        		string.localeCompare("SECDN") == 0 || string.localeCompare("SCDN") == 0) {
-				playerStats.colorClear();
-				enemyStats.colorClear();
-	                    playerStats.enemyLwrSec();
-	                    //condition to increase enemy stat depending on player stat
-	                } else {
-				playerStats.colorClear();
-				enemyStats.colorClear();
-				//condition to increase enemy stat depending on player stat
-	                }
-			enemyActions[Math.floor(Math.random() * enemyActions.length)].call(enemyStats);
-	                string = "";
-	                break;
-	            default:
-	                if (string.charAt(0) == 0) {
-	                    string = string.substring(1);
-	                }
-	                if (key == 8) {
-	                    string = string.substring(0, string.length - 1);
-	                } else {
-	                    string += char;
-	                }
-	                break;
-	        }
-	        Hack.updateTypeBox(string);
-        	}
+	input.onKeyDown = function(key) {
+		var char = String.fromCharCode(key);
+		if (hackBool == true) {
+		switch (key) {
+			case 13:
+				if (string.localeCompare("ATCKUP") == 0 || string.localeCompare("ATTACKUP") == 0) {
+					playerStats.colorClear();
+					enemyStats.colorClear();
+					playerStats.atckUp();
+					//condition to increase enemy stat depending on player stat
+				} else if (string.localeCompare("ATCK") == 0 || string.localeCompare("ATTACK") == 0) {
+					playerStats.colorClear();
+					enemyStats.colorClear();
+					playerStats.enemyLwrDef();
+					//condition to increase enemy stat depending on player stat
+				}  else if (string.localeCompare("ATCKDOWN") == 0 || string.localeCompare("ATTACKDOWN") == 0 || 
+					string.localeCompare("ATCKDWN") == 0 || string.localeCompare("ATTACKDWN") == 0 || 
+					string.localeCompare("ATCKDN") == 0 || string.localeCompare("ATTACKDN") == 0) {
+					playerStats.colorClear();
+					enemyStats.colorClear();
+					playerStats.enemyLwrAtck();
+					//condition to increase enemy stat depending on player stat
+				} else if (string.localeCompare("DEFUP") == 0 || string.localeCompare("DEFENSEUP") == 0) {
+					playerStats.colorClear();
+					enemyStats.colorClear();
+					playerStats.defUp();
+					//condition to increase enemy stat depending on player stat
+				} else if (string.localeCompare("MASKUP") == 0 || string.localeCompare("MSKUP") == 0 || 
+					string.localeCompare("MSK") == 0 || string.localeCompare("MASK") == 0) {
+					playerStats.colorClear();
+					enemyStats.colorClear();
+					playerStats.maskUp();
+					//condition to increase enemy stat depending on player stat
+				} else if (string.localeCompare("SECDOWN") == 0 || string.localeCompare("SCDOWN") == 0 || 
+					string.localeCompare("SECDWN") == 0 || string.localeCompare("SCDWN") == 0 || 
+					string.localeCompare("SECDN") == 0 || string.localeCompare("SCDN") == 0) {
+					playerStats.colorClear();
+					enemyStats.colorClear();
+					playerStats.enemyLwrSec();
+					//condition to increase enemy stat depending on player stat
+				} else {
+					playerStats.colorClear();
+					enemyStats.colorClear();
+					//condition to increase enemy stat depending on player stat
+				}
+				enemyActions[Math.floor(Math.random() * enemyActions.length)].call(enemyStats);
+				string = "";
+				break;
+			default:
+				if (string.charAt(0) == 0) {
+					string = string.substring(1);
+				}
+				if (key == 8) {
+					string = string.substring(0, string.length - 1);
+				} else {
+					string += char;
+				}
+				break;
+			}
+				Hack.updateTypeBox(string);
+		}
 	};
 	Update();
 }
