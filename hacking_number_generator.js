@@ -311,6 +311,7 @@ function InputsUpdate() {
 			if (Collision(click, gInput.mouse.x, gInput.mouse.y)) {
 				Hack.init();
 				hackBool = true;
+				string = "|";
 			}
 		}
 	};
@@ -319,6 +320,7 @@ function InputsUpdate() {
 		if (hackBool == true) {
 			switch (key) {
 				case 13:
+					string = string.substring(0, string.length - 1);
 					if (string.localeCompare("ATCKUP") == 0 || string.localeCompare("ATTACKUP") == 0) {
 						playerStats.colorClear();
 						enemyStats.colorClear();
@@ -365,7 +367,11 @@ function InputsUpdate() {
 				default:
 					if (string.charAt(0) == 0) string = string.substring(1);
 					if (key == 8) string = string.substring(0, string.length - 1);
-					else string += char;
+					else {
+						string = string.substring(0, string.length - 1);
+						string += char;
+						string += '|';
+					}
 					break;
 			}
 			Hack.updateTypeBox(string);
