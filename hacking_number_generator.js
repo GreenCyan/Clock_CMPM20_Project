@@ -4,7 +4,7 @@ initGame("canvas");
 //this line is for test only, comment it out later
 currentStats = new gameHackStats();
 
-var INC_RATIO = 1.10;
+var INC_RATIO = 1.15;
 var MIN_INC = 10;
 var DEDUCT_VAR = 0.05;
 var MIN_STATS = 1;
@@ -36,8 +36,8 @@ Hack = {
     boxType: null,
     init: function() {
         //playerStats.init(currentStats.hackCrack);
-        playerStats.init(genEnemy(80));
-        enemyStats.init(genEnemy(50));
+        playerStats.init(genEnemy(50));
+        enemyStats.init(genEnemy(20));
         this.boxType = new TextBox("YOOO");
         this.boxType.fontSize = 50;
         this.boxType.x = 0;
@@ -93,7 +93,8 @@ playerStats = {
 	},
     statUp: function(theStat, box) {
     	//input must be a string: the name of the variable
-    	if ((this[theStat] * (INC_RATIO - 1)) >= MIN_INC) this[theStat] = Math.floor(this[theStat] * INC_RATIO);
+    	//if ((this[theStat] * (INC_RATIO - 1)) >= MIN_INC) this[theStat] = Math.floor(this[theStat] * (INC_RATIO * (Math.random() / 5)));
+		if (this[theStat] >= 70) this[theStat] = Math.floor(this[theStat] * (INC_RATIO + (Math.random() / 5)));
     	else this[theStat] += MIN_INC;
     	if (box) {
 			if (box.color == "#993333") box.color = "#CC9900";
@@ -126,7 +127,8 @@ playerStats = {
     },
     statDown: function(theStat, deduct, box) {
     	//input must be a string: the name of the variable
-    	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+    	if (theStat == 'def') this[theStat] -= deduct;
+		else this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
     	if (this[theStat] < MIN_STATS) {
 			if (theStat == 'def' || theStat == 'mask') Hack.end();
 			else this[theStat] = MIN_STATS;
@@ -194,7 +196,8 @@ enemyStats = {
 	},
     statUp: function(theStat, box) {
     	//input must be a string: the name of the variable
-    	if ((this[theStat] * (INC_RATIO - 1)) >= MIN_INC) this[theStat] = Math.floor(this[theStat] * INC_RATIO);
+    	//if ((this[theStat] * (INC_RATIO - 1)) >= MIN_INC) this[theStat] = Math.floor(this[theStat] * (INC_RATIO * (Math.random() / 5)));
+		if (this[theStat] >= 70) this[theStat] = Math.floor(this[theStat] * (INC_RATIO + (Math.random() / 5)));
     	else this[theStat] += MIN_INC;
 		if (theStat == 'sec') {
 			if (this[theStat] >= 100) Hack.end();
@@ -230,7 +233,8 @@ enemyStats = {
     },
     statDown: function(theStat, deduct, box) {
     	//input must be a string: the name of the variable
-    	this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
+    	if (theStat == 'def') this[theStat] -= deduct;
+		else this[theStat] -= deduct + Math.floor(Math.random() * deduct * DEDUCT_VAR);
 		if (this[theStat] < MIN_STATS) {
 			if (theStat == 'def') Hack.end();
 			else this[theStat] = MIN_STATS;
