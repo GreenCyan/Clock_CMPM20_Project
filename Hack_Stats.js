@@ -2,36 +2,34 @@
 
 // Stats that affect hacking
 var crackStats = function(atck, def, spd, msk) {
-  this.attack = atck;
-  this.defense = def;
-  this.speed = spd;
-  this.mask = msk;
+	this.attack = atck;
+	this.defense = def;
+	this.speed = spd;
+	this.mask = msk;
 };
 
 var gameHackStats = function() {
-  // important stats
-  
-  // Current day. Every week starts with Monday
-  this.theDay = 0;
-  // positive numbers closer to government, negative numbers closer to freedom fighters
-  this.govAlignment = 30;
-  // The hacker's budget
-  this.money = 100;
-  // The hacker's hacking stats
-  this.hackCrack = new crackStats(5, 5, 5, 5);
-  
-  // other stats
-  
-  // Targets Hacked
-  this.targetNum = 0;
-  // Successful Hacks
-  this.winNum = 0;
-  // Times Caught
-  this.loseNum = 0;
-  // Money Earned
-  this.totalEarn = 0;
-  
+	// important stats
 
+	// Current day. Every week starts with Monday
+	this.theDay = 0;
+	// positive numbers closer to government, negative numbers closer to freedom fighters
+	this.govAlignment = 30;
+	// The hacker's budget
+	this.money = 100;
+	// The hacker's hacking stats
+	this.hackCrack = new crackStats(5, 5, 5, 5);
+
+	// other stats
+
+	// Targets Hacked
+	this.targetNum = 0;
+	// Successful Hacks
+	this.winNum = 0;
+	// Times Caught
+	this.loseNum = 0;
+	// Money Earned
+	this.totalEarn = 0;
 };
 
 // current game stats
@@ -54,13 +52,14 @@ var genEnemy = function(difficulty) {
 
 // loads saved game from loadStats or starts new game if loadStats is empty
 function startGame(loadStats) {
-  if (loadStats == null) {
-    currentStats = new gameHackStats();
-	return;
-  } else if (!(typeof loadStats == 'gameHackStats')) {
-    window.alert('Error: Incompatible object. Cannot load game.');
-    return;
-  } currentStats = loadStats;
+	if (loadStats == null) {
+		currentStats = new gameHackStats();
+		return;
+	} else if (!(typeof loadStats == 'gameHackStats')) {
+		window.alert('Error: Incompatible object. Cannot load game.');
+		return;
+	}
+	currentStats = loadStats;
 };
 
 // adds save game data to saveStats
