@@ -52,6 +52,12 @@ function Clock(startSec, stopSec, endFunction) {
 			if (this.counting()) {
 				delay = MAX_DELAY;
 			}
+			if (this.startMin >= 10) {
+				this.text = this.startHour + ":" + this.startMin;
+			} else {
+				this.text = this.startHour + ":0" + this.startMin;
+			}
+			this.text = 
 			if (this.startHour == this.stopHour && this.startMin == this.stopMin) {
 				this.endFunc();
 				this.pauseClock();
@@ -60,3 +66,6 @@ function Clock(startSec, stopSec, endFunction) {
 	};
 	
 };
+
+Clock.prototype = Object.create(TextBox.prototype);
+Clock.prototype.constructor = Clock;
