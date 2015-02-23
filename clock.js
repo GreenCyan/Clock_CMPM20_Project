@@ -57,14 +57,12 @@ function Clock(startSec, stopSec, endFunction) {
 			} else {
 				this.text = this.startHour + ":0" + this.startMin;
 			}
-			this.text = 
 			if (this.startHour == this.stopHour && this.startMin == this.stopMin) {
 				this.endFunc();
 				this.pauseClock();
 			}
 		};
 	};
-	
 };
 
 Clock.prototype = Object.create(TextBox.prototype);
