@@ -15,6 +15,13 @@ function Clock(startSec, stopSec, endFunction) {
 	
 	this.endFunc = endFunction;
 	
+	if (this.startMin >= 10) {
+		this.text = this.startHour + ":" + this.startMin;
+	} else {
+		this.text = this.startHour + ":0" + this.startMin;
+	}
+	
+	
 	//a second represented in milliseconds
 	this.delay = CLOCK_DELAY;
 	
@@ -50,7 +57,10 @@ function Clock(startSec, stopSec, endFunction) {
 	this.startClock = function() {
 		this.update = function(d) {
 			if (this.counting()) {
-				delay = MAX_DELAY;
+				this.delay = CLOCK_DELAY;
+			} else {
+				this.delay -= (d*MSPF);
+				return;
 			}
 			if (this.startMin >= 10) {
 				this.text = this.startHour + ":" + this.startMin;
