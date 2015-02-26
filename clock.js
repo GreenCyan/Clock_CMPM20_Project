@@ -3,7 +3,7 @@ var CLOCK_DELAY = 1000;
 // Clock to keep track of time
 // Minutes represented by seconds
 // Executes endFunction at end of timer
-function Clock(startSec, stopSec, endFunction) {
+function Clock(startSec, stopSec, endObject, endFunction) {
 	TextBox.call(this, "0:00");
 	
 	// starting time
@@ -13,6 +13,7 @@ function Clock(startSec, stopSec, endFunction) {
 	this.stopHour = Math.floor(stopSec / 60);
 	this.stopMin = stopSec % 60;
 	
+	this.endOb = endObject;
 	this.endFunc = endFunction;
 	
 	if (this.startMin >= 10) {
@@ -68,8 +69,8 @@ function Clock(startSec, stopSec, endFunction) {
 				this.text = this.startHour + ":0" + this.startMin;
 			}
 			if (this.startHour == this.stopHour && this.startMin == this.stopMin) {
-				this.endFunc();
 				this.pauseClock();
+				this.endFunc.call(this.endOb);
 			}
 		};
 	};
